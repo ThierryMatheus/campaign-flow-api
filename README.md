@@ -49,9 +49,3 @@ Em desenvolvimento ativo — construção **incremental**.
 ```bash
 cp .env.example .env
 docker compose up -d
-
-
-Autor
-Thierry Matheus
-
-Desenvolvedor Backend & DBA.
