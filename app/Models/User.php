@@ -25,9 +25,11 @@ class User extends Authenticatable
      */
     protected function casts(): array
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return ['email_verified_at' => 'datetime','password' => 'hashed'];
+    }
+    
+    public function workspaces()
+    {
+        return $this->belongsToMany(Workspace::class, 'workspace_user')->withPivot(['role', 'is_primary', 'joined_at', 'left_at'])->withTimestamps();
     }
 }
