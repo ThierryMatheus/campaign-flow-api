@@ -1,8 +1,8 @@
-# CampaignFlow API
+**CampaignFlow API**
 
 REST API for political campaign and mandate office management.
 
-Built as a technical portfolio project focused on:
+Technical portfolio project focused on demonstrating:
 
 - Robust Laravel API development
 - Database modeling and DBA best practices
@@ -11,7 +11,7 @@ Built as a technical portfolio project focused on:
 - Automated testing with Pest
 - Future performance comparison between MySQL and PostgreSQL
 
-## Stack
+**Stack**
 
 - Laravel 12
 - PHP 8.3+
@@ -21,11 +21,11 @@ Built as a technical portfolio project focused on:
 - Pest (Feature tests)
 - Docker
 
-## Current Status
+**Current Status**
 
-**In active development** — built incrementally.
+In active development — built incrementally.
 
-### Done
+**Done**
 
 - [x] Authentication (Register, Login, Logout, Me)
 - [x] Multi-workspace foundation
@@ -34,7 +34,7 @@ Built as a technical portfolio project focused on:
 - [x] Enums (Type, Status, Role)
 - [x] Feature tests (Auth + Workspace)
 
-### Next
+**Next**
 
 - [ ] Voters module
 - [ ] Teams (hierarchical)
@@ -47,12 +47,24 @@ Built as a technical portfolio project focused on:
 - [ ] API documentation (Scribe/Scramble)
 - [ ] MySQL × PostgreSQL performance comparison
 
-## Getting Started
+**Getting Started**
 
-```bash
-cp .env.example .env
-docker compose up -d
-php artisan key:generate
-php artisan migrate
-php artisan serve
-```
+1. Clone the repository
+2. Copy `.env.example` to `.env`
+3. Run `docker compose up -d`
+4. Run `composer install`
+5. Run `php artisan key:generate`
+6. Run `php artisan migrate`
+7. Run `php artisan serve`
+
+**Running Tests**
+
+`php artisan test`
+
+**Author**
+
+Thierry Matheus  
+Backend Developer (Laravel) transitioning to Database Administration.  
+Open to remote opportunities and relocation (especially Europe).
+
+---
