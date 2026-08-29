@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\Workspace;
-use Illuminate\Auth\Access\Response;
+// use Illuminate\Auth\Access\Response;
 
 class WorkspacePolicy
 {
@@ -13,7 +13,7 @@ class WorkspacePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class WorkspacePolicy
      */
     public function view(User $user, Workspace $workspace): bool
     {
-        return false;
+        return $workspace->users()->where('user_id', $user->id)->exists() || $workspace->owner_id === $user->id;
     }
 
     /**
@@ -29,7 +29,7 @@ class WorkspacePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class WorkspacePolicy
      */
     public function update(User $user, Workspace $workspace): bool
     {
-        return false;
+        return $workspace->owner_id === $user->id || $workspace->users()->where('user_id', $user->id)->whereIn('role', ['admin', 'candidate','coordinator'])->exists();
     }
 
     /**
@@ -45,7 +45,7 @@ class WorkspacePolicy
      */
     public function delete(User $user, Workspace $workspace): bool
     {
-        return false;
+        return $workspace->owner_id === $user->id;
     }
 
     /**

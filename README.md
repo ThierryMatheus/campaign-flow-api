@@ -1,51 +1,58 @@
 # CampaignFlow API
 
-API REST para gestão de campanhas políticas e gabinetes de mandato.
+REST API for political campaign and mandate office management.
 
-Projeto de portfólio técnico focado em demonstrar:
-- Desenvolvimento de APIs robustas com Laravel
-- Modelagem de banco de dados e práticas de DBA
-- Arquitetura limpa e organizada
-- Recursos avançados do Laravel (Sanctum, Policies, Events, Jobs, Queues, etc.)
-- Otimização de queries e performance
-- Comparativo MySQL × PostgreSQL (mesmo schema)
+Built as a technical portfolio project focused on:
+
+- Robust Laravel API development
+- Database modeling and DBA best practices
+- Clean architecture
+- Advanced Laravel features (Sanctum, Policies, Form Requests, API Resources, Enums)
+- Automated testing with Pest
+- Future performance comparison between MySQL and PostgreSQL
 
 ## Stack
 
-- **Laravel** 12
-- **PHP** 8.3+
-- **MySQL** 8.0+ (schema 100% compatível com PostgreSQL)
-- **Laravel Sanctum** (autenticação)
-- **Redis** (cache + queues)
-- **Docker** (ambiente de desenvolvimento)
+- Laravel 12
+- PHP 8.3+
+- MySQL 8 (schema fully compatible with PostgreSQL)
+- Laravel Sanctum
+- Redis
+- Pest (Feature tests)
+- Docker
 
-## Status atual
+## Current Status
 
-Em desenvolvimento ativo — construção **incremental**.
+**In active development** — built incrementally.
 
-## Roadmap
+### Done
 
-- [ ] Autenticação + Multi-workspace + Roles & Permissions
-- [ ] Módulo de Eleitores (com filtros avançados)
-- [ ] Organização hierárquica de equipes
-- [ ] Atividades de campo / visitas
-- [ ] Demandas do gabinete
-- [ ] Agenda de compromissos
-- [ ] Controle de doações e gastos
-- [ ] Dashboard e relatórios
-- [ ] Sistema de auditoria + Soft Deletes
-- [ ] Documentação da API (Scribe/Scramble)
-- [ ] Testes automatizados
-- [ ] Comparativo de performance MySQL × PostgreSQL
+- [x] Authentication (Register, Login, Logout, Me)
+- [x] Multi-workspace foundation
+- [x] Workspace CRUD + Policies
+- [x] Roles system (pivot)
+- [x] Enums (Type, Status, Role)
+- [x] Feature tests (Auth + Workspace)
 
-## Como rodar o projeto
+### Next
 
-### Pré-requisitos
-- Docker + Docker Compose
-- Git
+- [ ] Voters module
+- [ ] Teams (hierarchical)
+- [ ] Field activities
+- [ ] Demands (mandate mode)
+- [ ] Agenda
+- [ ] Donations & Expenses
+- [ ] Dashboard & Reports
+- [ ] Audit log
+- [ ] API documentation (Scribe/Scramble)
+- [ ] MySQL × PostgreSQL performance comparison
 
-### Subindo o ambiente
+## Getting Started
 
 ```bash
 cp .env.example .env
 docker compose up -d
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```

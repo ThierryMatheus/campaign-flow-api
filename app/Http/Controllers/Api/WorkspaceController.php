@@ -17,6 +17,8 @@ class WorkspaceController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Workspace::class);
+
         $workspaces = $request->user()->workspaces()->latest()->get();
 
         return WorkspaceResource::collection($workspaces);
@@ -27,6 +29,8 @@ class WorkspaceController extends Controller
      */
     public function store(StoreWorkspaceRequest $request)
     {
+        $this->authorize('create', Workspace::class);
+
         $workspace = Workspace::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name) . '-' . Str::random(6),
@@ -34,14 +38,14 @@ class WorkspaceController extends Controller
             'election_year' => $request->election_year,
             'city' => $request->city,
             'state' => $request->state,
-            'status' => $request->status,
+            'status' => $request->input('status', 'draft'),
             'owner_id' => $request->user()->id
         ]);
 
         $workspace->users()->attach($request->user()->id, [
             'role' => 'admin',
             'is_primary' => true
-        ]);
+        ], 201);
 
         return new WorkspaceResource($workspace);
     }
@@ -51,6 +55,8 @@ class WorkspaceController extends Controller
      */
     public function show(Workspace $workspace)
     {
+        $this->authorize('view', $workspace);
+
         return new WorkspaceResource($workspace);
     }
 
@@ -59,6 +65,8 @@ class WorkspaceController extends Controller
      */
     public function update(UpdateWorkspaceRequest $request, Workspace $workspace)
     {
+        $this->authorize('update', $workspace);
+
         $workspace->update($request->validated());
 
         return new WorkspaceResource($workspace);
@@ -69,6 +77,8 @@ class WorkspaceController extends Controller
      */
     public function destroy(Workspace $workspace)
     {
+        $this->authorize('delete', $workspace);
+
         $workspace->delete();
 
         return response()->json(['message' => 'Workspace deleted successfully']);
