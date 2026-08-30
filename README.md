@@ -33,10 +33,10 @@ In active development — built incrementally.
 - [x] Roles system (pivot)
 - [x] Enums (Type, Status, Role)
 - [x] Feature tests (Auth + Workspace)
+- [x] Voters module
 
 **Next**
 
-- [ ] Voters module
 - [ ] Teams (hierarchical)
 - [ ] Field activities
 - [ ] Demands (mandate mode)
