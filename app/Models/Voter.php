@@ -29,4 +29,8 @@ class Voter extends Model
     public function worskpace(){
         return $this->belongsTo(Workspace::class);
     }
+
+    public function teams(){
+        return $this->belongsToMany(Team::class, 'voter_team')->withTimestamps();
+    }
 }

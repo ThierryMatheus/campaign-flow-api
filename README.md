@@ -34,10 +34,10 @@ In active development — built incrementally.
 - [x] Enums (Type, Status, Role)
 - [x] Feature tests (Auth + Workspace)
 - [x] Voters module
+- [x] Teams (hierarchical)
 
 **Next**
 
-- [ ] Teams (hierarchical)
 - [ ] Field activities
 - [ ] Demands (mandate mode)
 - [ ] Agenda

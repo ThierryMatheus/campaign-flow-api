@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\VoterController;
 use App\Http\Controllers\Api\WorkspaceController;
 use Illuminate\Http\Request;
@@ -19,4 +20,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/workspaces', WorkspaceController::class);
     Route::apiResource('/voters', VoterController::class);
+    Route::apiResource('teams', TeamController::class);
 });
