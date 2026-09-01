@@ -81,3 +81,17 @@ it('can soft delete a voter', function () {
     $response->assertOk();
     $this->assertSoftDeleted('voters', ['id' => $voter->id]);
 });
+
+it('can filter voters by status', function () {
+    $user = User::factory()->create();
+    $workspace = Workspace::factory()->create(['owner_id' => $user->id]);
+    $workspace->users()->attach($user->id, ['role' => 'admin']);
+
+    Voter::factory()->create(['workspace_id' => $workspace->id, 'status' => 'supporter']);
+    Voter::factory()->create(['workspace_id' => $workspace->id, 'status' => 'undecided']);
+
+    $response = $this->actingAs($user)->getJson('/api/voters?workspace_id=' . $workspace->id . '&status=supporter');
+
+    $response->assertOk()
+        ->assertJsonCount(1, 'data');
+});

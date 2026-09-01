@@ -18,7 +18,33 @@ class VoterController extends Controller
     {
         $this->authorize('viewAny', Voter::class);
 
-        $voters = Voter::where('workspace_id', $request->workspace_id)->latest()->paginate(20);
+        $query = Voter::where('workspace_id', $request->workspace_id);
+
+        if($request->filled('status')){
+            $query->where('status', $request->status);
+        }
+
+        if($request->filled('origin')){
+            $query->where('origin', $request->origin);
+        }
+
+        if($request->filled('neighborhood')){
+            $query->where('neighborhood', 'like','%' . $request->neighborhood . '%');
+        }
+
+        if($request->filled('city')){
+            $query->where('city', 'like','%' . $request->city . '%');
+        }
+
+        if($request->filled('search')){
+            $search = $request->search;
+            $query->where(function ($q) use ($search){
+                $q->where('name','like', "%{$search}%");
+                $q->where('cpf','like', "%{$search}%");
+            });
+        }
+
+        $voters = $query->latest()->paginate(20);
 
         return VoterResource::collection($voters);
     }
