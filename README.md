@@ -35,10 +35,10 @@ In active development — built incrementally.
 - [x] Feature tests (Auth + Workspace)
 - [x] Voters module
 - [x] Teams (hierarchical)
+- [x] Field activities
 
 **Next**
 
-- [ ] Field activities
 - [ ] Demands (mandate mode)
 - [ ] Agenda
 - [ ] Donations & Expenses
