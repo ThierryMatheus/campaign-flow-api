@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DemandController;
 use App\Http\Controllers\Api\FieldActivityController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\VoterController;
@@ -23,4 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/voters', VoterController::class);
     Route::apiResource('teams', TeamController::class);
     Route::apiResource('field-activities', FieldActivityController::class);
+    Route::apiResource('demands', DemandController::class);
 });

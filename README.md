@@ -36,10 +36,10 @@ In active development — built incrementally.
 - [x] Voters module
 - [x] Teams (hierarchical)
 - [x] Field activities
+- [x] Demands (mandate mode)
 
 **Next**
 
-- [ ] Demands (mandate mode)
 - [ ] Agenda
 - [ ] Donations & Expenses
 - [ ] Dashboard & Reports

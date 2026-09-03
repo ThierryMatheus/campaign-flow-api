@@ -77,3 +77,30 @@ it('can soft delete a field activity', function () {
     $response->assertOk();
     $this->assertSoftDeleted('field_activities', ['id' => $activity->id]);
 });
+
+it('can filter field activities by type and result', function () {
+    $user = User::factory()->create();
+    $workspace = Workspace::factory()->create(['owner_id' => $user->id]);
+    $workspace->users()->attach($user->id, ['role' => 'admin']);
+
+    FieldActivity::factory()->create([
+        'workspace_id' => $workspace->id,
+        'user_id' => $user->id,
+        'type' => 'visit',
+        'result' => 'positive',
+    ]);
+
+    FieldActivity::factory()->create([
+        'workspace_id' => $workspace->id,
+        'user_id' => $user->id,
+        'type' => 'call',
+        'result' => 'neutral',
+    ]);
+
+    $response = $this->actingAs($user)->getJson(
+        '/api/field-activities?workspace_id=' . $workspace->id . '&type=visit&result=positive'
+    );
+
+    $response->assertOk()
+        ->assertJsonCount(1, 'data');
+});

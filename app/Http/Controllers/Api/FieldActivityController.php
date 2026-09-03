@@ -18,10 +18,37 @@ class FieldActivityController extends Controller
     {
         $this->authorize('viewAny', FieldActivity::class);
 
-        $activities = FieldActivity::where('workspace_id', $request->workspace_id)
-            ->with(['voter', 'team', 'user'])
-            ->latest('performed_at')
-            ->paginate(20);
+        $query = FieldActivity::where('workspace_id', $request->workspace_id)->with(['voter', 'team', 'user']);
+
+        if($request->filled('type')){
+            $query->where('type', $request->type);
+        }
+
+        if($request->filled('result')){
+            $query->where('result', $request->result);
+        }
+
+        if($request->filled('team_id')){
+            $query->where('team_id', $request->team_id);
+        }
+
+        if($request->filled('voter_id')){
+            $query->where('voter_id', $request->voter_id);
+        }
+
+        if($request->filled('user_id')){
+            $query->where('user_id', $request->user_id);
+        }
+
+        if($request->filled('from')){
+            $query->where('performed_at', '>=' ,$request->from);
+        }
+
+        if($request->filled('to')){
+            $query->where('performed_at', '<=' ,$request->to);
+        }
+
+        $activities = $query->latest('performed_at')->paginate(20);
 
         return FieldActivityResource::collection($activities);
     }
