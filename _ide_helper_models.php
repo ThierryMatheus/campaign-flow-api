@@ -13,6 +13,19 @@
 
 namespace App\Models{
 /**
+ * @method static \Database\Factories\AgendaItemFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem withoutTrashed()
+ */
+	class AgendaItem extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * @property \App\Enums\DemandStatus $status
  * @property \App\Enums\DemandPriority $priority
  * @property-read \App\Models\User|null $assignee

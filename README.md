@@ -37,10 +37,10 @@ In active development — built incrementally.
 - [x] Teams (hierarchical)
 - [x] Field activities
 - [x] Demands (mandate mode)
+- [x] Agenda
 
 **Next**
 
-- [ ] Agenda
 - [ ] Donations & Expenses
 - [ ] Dashboard & Reports
 - [ ] Audit log
