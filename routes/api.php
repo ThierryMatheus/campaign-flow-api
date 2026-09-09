@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AgendaItemController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DemandController;
 use App\Http\Controllers\Api\FieldActivityController;
 use App\Http\Controllers\Api\TeamController;
@@ -29,4 +30,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('demands', DemandController::class);
     Route::apiResource('agenda-items', AgendaItemController::class);
     Route::apiResource('transactions', TransactionController::class);
+
+    Route::get('/dashboard/summary', [DashboardController::class, 'summary']);
 });

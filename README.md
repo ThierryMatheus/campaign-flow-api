@@ -38,11 +38,11 @@ In active development — built incrementally.
 - [x] Field activities
 - [x] Demands (mandate mode)
 - [x] Agenda
+- [x] Donations & Expenses
+- [x] Dashboard & Reports
 
 **Next**
 
-- [ ] Donations & Expenses
-- [ ] Dashboard & Reports
 - [ ] Audit log
 - [ ] API documentation (Scribe/Scramble)
 - [ ] MySQL × PostgreSQL performance comparison
