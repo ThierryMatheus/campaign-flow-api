@@ -40,11 +40,11 @@ In active development — built incrementally.
 - [x] Agenda
 - [x] Donations & Expenses
 - [x] Dashboard & Reports
+- [x] API documentation (Scribe/Scramble)
 
 **Next**
 
 - [ ] Audit log
-- [ ] API documentation (Scribe/Scramble)
 - [ ] MySQL × PostgreSQL performance comparison
 
 **Getting Started**
