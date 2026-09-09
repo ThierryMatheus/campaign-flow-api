@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ActivityLogController;
 use App\Http\Controllers\Api\AgendaItemController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
@@ -32,4 +33,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('transactions', TransactionController::class);
 
     Route::get('/dashboard/summary', [DashboardController::class, 'summary']);
+
+    Route::get('/activity-logs', [ActivityLogController::class, 'index']);
 });
