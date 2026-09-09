@@ -13,11 +13,49 @@
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property int $workspace_id
+ * @property int|null $team_id
+ * @property int|null $voter_id
+ * @property int $created_by
+ * @property string $title
+ * @property string|null $description
+ * @property \App\Enums\AgendaItemType $type
+ * @property \App\Enums\AgendaItemStatus $status
+ * @property \Illuminate\Support\Carbon $starts_at
+ * @property \Illuminate\Support\Carbon|null $ends_at
+ * @property string|null $location
+ * @property numeric|null $latitude
+ * @property numeric|null $longitude
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\User $creator
+ * @property-read \App\Models\Team|null $team
+ * @property-read \App\Models\Voter|null $voter
+ * @property-read \App\Models\Workspace|null $workspace
  * @method static \Database\Factories\AgendaItemFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereEndsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereLatitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereLongitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereStartsAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereTeamId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereVoterId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem whereWorkspaceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AgendaItem withoutTrashed()
  */
@@ -26,10 +64,22 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property int $workspace_id
+ * @property int|null $voter_id
+ * @property int $created_by
+ * @property int|null $assigned_to
+ * @property string $title
+ * @property string|null $description
  * @property \App\Enums\DemandStatus $status
  * @property \App\Enums\DemandPriority $priority
+ * @property string|null $category
+ * @property \Illuminate\Support\Carbon|null $resolved_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\User|null $assignee
- * @property-read \App\Models\User|null $creator
+ * @property-read \App\Models\User $creator
  * @property-read \App\Models\Voter|null $voter
  * @property-read \App\Models\Workspace|null $workspace
  * @method static \Database\Factories\DemandFactory factory($count = null, $state = [])
@@ -37,6 +87,20 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereAssignedTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereCategory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand wherePriority($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereResolvedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereVoterId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand whereWorkspaceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Demand withoutTrashed()
  */
@@ -124,6 +188,19 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Team withoutTrashed()
  */
 	class Team extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @method static \Database\Factories\TransactionFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction withoutTrashed()
+ */
+	class Transaction extends \Eloquent {}
 }
 
 namespace App\Models{

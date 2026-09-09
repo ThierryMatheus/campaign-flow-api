@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DemandController;
 use App\Http\Controllers\Api\FieldActivityController;
 use App\Http\Controllers\Api\TeamController;
+use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\VoterController;
 use App\Http\Controllers\Api\WorkspaceController;
 use Illuminate\Http\Request;
@@ -27,4 +28,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('field-activities', FieldActivityController::class);
     Route::apiResource('demands', DemandController::class);
     Route::apiResource('agenda-items', AgendaItemController::class);
+    Route::apiResource('transactions', TransactionController::class);
 });
