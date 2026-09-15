@@ -25,6 +25,40 @@ Technical portfolio project focused on demonstrating:
 
 In active development — built incrementally.
 
+## Performance
+
+### Test dataset
+
+- 50,000 voters
+- 5,000 field activities
+- 2,000 demands
+- 1,000 transactions
+- 500 agenda items
+
+Seeder: `php artisan db:seed --class=PerformanceSeeder`
+
+### Baseline (Telescope, local)
+
+| Endpoint                          | Duration   |
+| --------------------------------- | ---------- |
+| GET /voters?status=supporter      | ~200–260ms |
+| GET /voters?search=...            | ~180–290ms |
+| GET /dashboard/summary (no cache) | ~350-440ms |
+
+### Optimization
+
+- Composite indexes on high-traffic filters (`workspace_id` + status/type/date)
+- Redis cache on dashboard summary (TTL 60s)
+
+| Endpoint               | After (cache hit) |
+| ---------------------- | ----------------- |
+| GET /dashboard/summary | ~191ms            |
+
+### Notes
+
+- `EXPLAIN` on status filter uses `voters_workspace_id_status_index` (`type=ref`)
+- `LIKE %term%` search cannot efficiently use B-tree indexes (known limitation)
+
 **Done**
 
 - [x] Authentication (Register, Login, Logout, Me)
@@ -39,13 +73,14 @@ In active development — built incrementally.
 - [x] Demands (mandate mode)
 - [x] Agenda
 - [x] Donations & Expenses
-- [x] Dashboard & Reports
+- [x] Dashboard
 - [x] API documentation (Scribe/Scramble)
 - [x] Audit log
 
 **Next**
 
 - [ ] MySQL × PostgreSQL performance comparison
+- [ ] Reports/export (async, optional Python)
 
 **Getting Started**
 
