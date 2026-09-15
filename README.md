@@ -71,10 +71,12 @@ In active development — built incrementally.
 - [x] API documentation (Scribe/Scramble)
 - [x] Audit log
 - [x] MySQL × PostgreSQL performance comparison
+- [x] Python proof-of-concept export script (`reports-python/`)
 
 **Next**
 
-- [ ] Reports/export (async, optional Python)
+- [ ] Async report generation (Job + download endpoint)
+- [ ] Python worker for richer exports (XLSX / charts)
 
 **Getting Started**
 
@@ -89,6 +91,23 @@ In active development — built incrementally.
 **Running Tests**
 
 `php artisan test`
+
+## Reports (Python POC)
+
+Proof-of-concept script that authenticates against the API and exports the dashboard summary to CSV.
+
+Setup:
+
+1. cd reports-python
+2. python -m venv venv
+3. Activate the venv (Windows: venv\Scripts\activate)
+4. python -m pip install requests
+5. Start the API (php artisan serve)
+6. python dashboard_report.py
+
+Output file: reports-python/dashboard_summary.csv
+
+Planned evolution: queue-based report requests in Laravel, with optional Python generation for spreadsheets and charts.
 
 **Author**
 
