@@ -29,35 +29,29 @@ In active development — built incrementally.
 
 ### Test dataset
 
-- 50,000 voters
-- 5,000 field activities
-- 2,000 demands
-- 1,000 transactions
-- 500 agenda items
-
-Seeder: `php artisan db:seed --class=PerformanceSeeder`
+- 50,000 voters + related modules
+- Seeder: `php artisan db:seed --class=PerformanceSeeder`
 
 ### Baseline (Telescope, local)
 
-| Endpoint                          | Duration   |
-| --------------------------------- | ---------- |
-| GET /voters?status=supporter      | ~200–260ms |
-| GET /voters?search=...            | ~180–290ms |
-| GET /dashboard/summary (no cache) | ~350-440ms |
+| Endpoint                            | MySQL      | PostgreSQL |
+| ----------------------------------- | ---------- | ---------- |
+| GET /voters?status=supporter        | ~200–260ms | ~379ms     |
+| GET /voters?search=...              | ~180–290ms | ~193ms     |
+| GET /dashboard/summary (cache miss) | ~350–440ms | ~265ms     |
+| GET /dashboard/summary (cache hit)  | ~191ms     | ~172ms     |
 
-### Optimization
+### Optimizations
 
-- Composite indexes on high-traffic filters (`workspace_id` + status/type/date)
+- Composite indexes on high-traffic filters
 - Redis cache on dashboard summary (TTL 60s)
-
-| Endpoint               | After (cache hit) |
-| ---------------------- | ----------------- |
-| GET /dashboard/summary | ~191ms            |
 
 ### Notes
 
-- `EXPLAIN` on status filter uses `voters_workspace_id_status_index` (`type=ref`)
-- `LIKE %term%` search cannot efficiently use B-tree indexes (known limitation)
+- Schema is MySQL/PostgreSQL compatible
+- `EXPLAIN` (MySQL) on status filter uses `voters_workspace_id_status_index` (`type=ref`)
+- Leading-wildcard `LIKE %term%` remains index-unfriendly on both engines
+- Numbers are single-machine, Telescope-on; treat as relative baseline, not production SLA
 
 **Done**
 
@@ -76,10 +70,10 @@ Seeder: `php artisan db:seed --class=PerformanceSeeder`
 - [x] Dashboard
 - [x] API documentation (Scribe/Scramble)
 - [x] Audit log
+- [x] MySQL × PostgreSQL performance comparison
 
 **Next**
 
-- [ ] MySQL × PostgreSQL performance comparison
 - [ ] Reports/export (async, optional Python)
 
 **Getting Started**
