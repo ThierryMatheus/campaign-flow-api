@@ -72,10 +72,10 @@ In active development — built incrementally.
 - [x] Audit log
 - [x] MySQL × PostgreSQL performance comparison
 - [x] Python proof-of-concept export script (`reports-python/`)
+- [x] Async report generation (Job + download endpoint)
 
 **Next**
 
-- [ ] Async report generation (Job + download endpoint)
 - [ ] Python worker for richer exports (XLSX / charts)
 
 **Getting Started**

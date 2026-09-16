@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\DemandController;
 use App\Http\Controllers\Api\FieldActivityController;
+use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\VoterController;
@@ -35,4 +36,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dashboard/summary', [DashboardController::class, 'summary']);
 
     Route::get('/activity-logs', [ActivityLogController::class, 'index']);
+
+    Route::get('reports', [ReportController::class, 'index']);
+    Route::post('reports', [ReportController::class, 'store']);
+    Route::get('reports/{report}', [ReportController::class, 'show']);
+    Route::get('reports/{report}/download', [ReportController::class, 'download']);
 });

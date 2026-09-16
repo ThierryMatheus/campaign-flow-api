@@ -30,6 +30,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activitiesAsSubject
+ * @property-read int|null $activities_as_subject_count
  * @property-read \App\Models\User $creator
  * @property-read \App\Models\Team|null $team
  * @property-read \App\Models\Voter|null $voter
@@ -78,6 +80,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activitiesAsSubject
+ * @property-read int|null $activities_as_subject_count
  * @property-read \App\Models\User|null $assignee
  * @property-read \App\Models\User $creator
  * @property-read \App\Models\Voter|null $voter
@@ -123,6 +127,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activitiesAsSubject
+ * @property-read int|null $activities_as_subject_count
  * @property-read \App\Models\Team|null $team
  * @property-read \App\Models\User $user
  * @property-read \App\Models\Voter|null $voter
@@ -163,6 +169,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activitiesAsSubject
+ * @property-read int|null $activities_as_subject_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Team> $children
  * @property-read int|null $children_count
  * @property-read \App\Models\User|null $leader
@@ -192,11 +200,43 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property int $workspace_id
+ * @property int|null $created_by
+ * @property \App\Enums\TransactionType $type
+ * @property \App\Enums\TransactionCategory|null $category
+ * @property string $title
+ * @property string|null $description
+ * @property numeric $amount
+ * @property \Illuminate\Support\Carbon $occurred_at
+ * @property string|null $payment_method
+ * @property string|null $donor_or_vendor
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activitiesAsSubject
+ * @property-read int|null $activities_as_subject_count
+ * @property-read \App\Models\User|null $creator
+ * @property-read \App\Models\Workspace|null $workspace
  * @method static \Database\Factories\TransactionFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereCategory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereDonorOrVendor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereOccurredAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction wherePaymentMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereWorkspaceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction withoutTrashed()
  */
@@ -259,6 +299,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activitiesAsSubject
+ * @property-read int|null $activities_as_subject_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Team> $teams
  * @property-read int|null $teams_count
  * @property-read \App\Models\Workspace|null $worskpace
@@ -309,6 +351,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activitiesAsSubject
+ * @property-read int|null $activities_as_subject_count
  * @property-read \App\Models\User $owner
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
