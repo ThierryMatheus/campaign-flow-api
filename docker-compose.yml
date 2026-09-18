@@ -24,8 +24,23 @@ services:
     networks:
       - campaignflow
 
+  postgres:
+    image: postgres:16
+    container_name: campaignflow_postgres
+    environment:
+      POSTGRES_DB: campaignflow
+      POSTGRES_USER: campaignflow
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - campaignflow_postgres_data:/var/lib/postgresql/data
+    networks:
+      - campaignflow
+
 volumes:
   campaignflow_mysql_data:
+  campaignflow_postgres_data:
 
 networks:
   campaignflow:

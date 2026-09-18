@@ -1,6 +1,15 @@
 <?php
 
+use App\Http\Controllers\Api\ActivityLogController;
+use App\Http\Controllers\Api\AgendaItemController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\DemandController;
+use App\Http\Controllers\Api\FieldActivityController;
+use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\TeamController;
+use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\VoterController;
 use App\Http\Controllers\Api\WorkspaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,4 +26,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
 
     Route::apiResource('/workspaces', WorkspaceController::class);
+    Route::apiResource('/voters', VoterController::class);
+    Route::apiResource('teams', TeamController::class);
+    Route::apiResource('field-activities', FieldActivityController::class);
+    Route::apiResource('demands', DemandController::class);
+    Route::apiResource('agenda-items', AgendaItemController::class);
+    Route::apiResource('transactions', TransactionController::class);
+
+    Route::get('/dashboard/summary', [DashboardController::class, 'summary']);
+
+    Route::get('/activity-logs', [ActivityLogController::class, 'index']);
+
+    Route::get('reports', [ReportController::class, 'index']);
+    Route::post('reports', [ReportController::class, 'store']);
+    Route::get('reports/{report}', [ReportController::class, 'show']);
+    Route::get('reports/{report}/download', [ReportController::class, 'download']);
 });
